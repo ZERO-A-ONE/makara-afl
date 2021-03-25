@@ -116,8 +116,8 @@ class develop(_develop):
 get_patches()
 
 setup(
-    name='shellphish-afl', version='1.2.2', description="pip package for afl",
-    packages=['shellphish_afl'],
+    name='makara-afl', version='1.0.0', description="pip3 package for afl++",
+    packages=['makara_afl'],
     cmdclass={'build': build, 'develop': develop},
     data_files=data_files,
     scripts=['fetchlibs.sh'],
