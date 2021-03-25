@@ -77,14 +77,6 @@ def _datafiles():
 
     return data_files
 
-def get_patches():
-    # get all patches
-    for path,_,files in os.walk("patches"):
-        patches = [os.path.join(path, f) for f in files]
-        if patches:
-            data_files.append((path, patches))
-
-    return data_files
 
 class build(_build):
     def run(self):
@@ -101,8 +93,6 @@ class develop(_develop):
         self.execute(_setup_libs, (), msg="Getting libraries")
         _datafiles()
         _develop.run(self)
-
-get_patches()
 
 setup(
     name='makara-afl', version='1.0.0', description="pip3 package for afl++",
