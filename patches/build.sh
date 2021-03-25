@@ -5,7 +5,7 @@ if [ $# -lt 1 ]; then
     exit 1
 fi
 
-make
+make -j
 
 ARCHES=$@
 
