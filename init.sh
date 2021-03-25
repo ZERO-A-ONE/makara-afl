@@ -15,8 +15,6 @@ pip3 install IPython
 pip3 install angr
 pip3 install git+https://github.com/angr/tracer
 pip3 install git+https://github.com/shellphish/driller
-sudo echo core | sudo tee /proc/sys/kernel/core_patter
-sudo echo 1 | sudo tee /proc/sys/kernel/sched_child_runs_firs
 sudo apt-get install -y build-essential python3-dev automake git flex bison libglib2.0-dev libpixman-1-dev python3-setuptools
 sudo apt-get install -y lld llvm llvm-dev clang 
 sudo apt-get install -y gcc-$(gcc --version|head -n1|sed 's/.* //'|sed 's/\..*//')-plugin-dev libstdc++-$(gcc --version|head -n1|sed 's/.* //'|sed 's/\..*//')-dev
