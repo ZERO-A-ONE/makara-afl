@@ -12,7 +12,7 @@ BUILD_QEMU_PATCH_FILE = os.path.join("patches", "build_qemu.diff")
 AFL_UNIX_GEN = os.path.join(os.curdir, "patches", "build.sh")
 AFL_CGC_INSTALL_PATH = os.path.join("bin", "afl-cgc")
 AFL_MULTI_CGC_INSTALL_PATH = os.path.join("bin", "afl-multi-cgc")
-SUPPORTED_ARCHES = ["aarch64", "x86_64", "i386", "arm", "ppc", "ppc64", "mips", "mipsel", "mips64"]
+SUPPORTED_ARCHES = ["aarch64", "x86_64", "i386", "arm"]
 QEMU_PATCH = "patches/memfd.diff"
 MULTIARCH_LIBRARY_PATH = os.path.join("bin", "fuzzer-libs")
 AFL_QEMU_MODE_PATCH = AFL_UNIX_INSTALL_PATH+"/qemu_mode/patches/"
@@ -77,6 +77,14 @@ def _datafiles():
 
     return data_files
 
+def get_patches():
+    # get all patches
+    for path,_,files in os.walk("patches"):
+        patches = [os.path.join(path, f) for f in files]
+        if patches:
+            data_files.append((path, patches))
+
+    return data_files
 
 class build(_build):
     def run(self):
@@ -94,8 +102,10 @@ class develop(_develop):
         _datafiles()
         _develop.run(self)
 
+get_patches()
+
 setup(
-    name='makara-afl', version='1.0.0', description="pip3 package for afl++",
+    name='makara-afl', version='1.2.2', description="pip package for afl",
     packages=['makara_afl'],
     cmdclass={'build': build, 'develop': develop},
     data_files=data_files,
